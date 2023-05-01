@@ -6,14 +6,12 @@
         {
             if (!File.Exists(imagesFilePath))
             {
-                Console.WriteLine($"File {imagesFilePath} does not exists");
-                throw new FileNotFoundException();
+                throw new FileNotFoundException($"File {imagesFilePath} does not exists");
             }
 
             if (!File.Exists(labelsFilePath))
             {
-                Console.WriteLine($"File {labelsFilePath} does not exists");
-                throw new FileNotFoundException();
+                throw new FileNotFoundException($"File {labelsFilePath} does not exists");
             }
 
             byte[] images = File.ReadAllBytes(imagesFilePath);

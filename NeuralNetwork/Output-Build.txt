@@ -1,0 +1,7 @@
+﻿Build started...
+1>------ Build started: Project: NeuralNetwork, Configuration: Release Any CPU ------
+1>D:\BSUIR\6 sem\Decision-making methods and algorithms\Labs\Lab9\Lab9\NeuralNetwork\Program.cs(82,21,82,52): warning SYSLIB0011: 'BinaryFormatter.Serialize(Stream, object)' is obsolete: 'BinaryFormatter serialization is obsolete and should not be used. See https://aka.ms/binaryformatter for more information.'
+1>NeuralNetwork -> D:\BSUIR\6 sem\Decision-making methods and algorithms\Labs\Lab9\Lab9\NeuralNetwork\bin\Release\net6.0\NeuralNetwork.dll
+1>Done building project "NeuralNetwork.csproj".
+========== Build: 1 succeeded, 0 failed, 2 up-to-date, 0 skipped ==========
+========== Build started at 3:35 PM and took 00,585 seconds ==========
