@@ -4,16 +4,19 @@ A simple neural network trained to recognize handwritten numbers
 ## Project structure
 * **MnistLoader**
 	* DLL
-	* Is used in NeuralNetwork to load and parse training and test dataset
+	* Is used in NeuralNetwork to load and parse training and test datasets
 * **NeuralNetwork**
 	* Console application
-	* Is used to create a neural network on a training sample
-	* Uses a test sample to test the accuracy of the neural network
+	* Is used to create a neural network on a training dataset
+	* Uses a test dataset to test the accuracy of the neural network
 * **TestingWithDrawing**
-	* soon...
+	* Windows form application
+    * Allows to load a previously created neural network
+    * Neural network can be tested with handwritten digits
 
 ## Dataset
 [The MNIST database of handwritten digits](http://yann.lecun.com/exdb/mnist/)
+
 Has ***training*** set of 60,000 examples, and ***test*** set of 10,000 examples. The digist have been size-normalized and centered in a fixed-size image (28 x 28 pixels)
 
 ## Usage
@@ -30,7 +33,7 @@ You can create a neural network to recognize handwritten numbers with your own p
 9. ...N. hidden layers sizes (must be ints)
 10. N+1. output layer size (must be 10)
 
-### Example usage
+### Example of creating a neural network with parameters
 ```
 .\NNBuilder\NeuralNetwork.exe 
 .\train-images.idx3-ubyte 
@@ -39,12 +42,25 @@ You can create a neural network to recognize handwritten numbers with your own p
 .\t10k-labels.idx1-ubyte 
 0.01 
 10 
-'./neural networks' 
-784 512 128 64 10
+'./neural networks/764_256_64_10_lr0,01_e10' 
+784 256 64 10
 ```
-//image need
+
+![Neural network training image](/screenshots/NeuralNetworkTraining.png)
+
 ### Application of a neural network
 The output file of the neural network can be loaded into TestingWithDrawing and you can check how the neural network works
+
+![test image 0](/screenshots/test0.png)
+![test image 1](/screenshots/test1.png)
+![test image 2](/screenshots/test2.png)
+![test image 3](/screenshots/test3.png)
+![test image 4](/screenshots/test4.png)
+![test image 5](/screenshots/test5.png)
+![test image 6](/screenshots/test6.png)
+![test image 7](/screenshots/test7.png)
+![test image 8](/screenshots/test8.png)
+![test image 9](/screenshots/test9.png)
 
 ## Training process theory (back propagatioin)
 1. Initialize the weights of the neural network
