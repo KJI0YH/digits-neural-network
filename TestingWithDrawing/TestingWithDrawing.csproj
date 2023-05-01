@@ -8,4 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MnistLoader\MnistLoader.csproj" />
+    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -60,8 +60,6 @@ namespace NeuralNetwork
                         totalError += Math.Abs(outputError[j]);
                     }
 
-                    //Console.WriteLine($"Output error: {outputError.Select(Math.Abs).Sum()} ");
-
                     BackPropagation(inputs[i], outputError, learningRate);
 
                     progressBar.Tick();
