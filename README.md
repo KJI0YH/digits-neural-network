@@ -19,6 +19,15 @@ A simple neural network trained to recognize handwritten numbers
 
 Has ***training*** set of 60,000 examples, and ***test*** set of 10,000 examples. The digist have been size-normalized and centered in a fixed-size image (28 x 28 pixels)
 
+## Training process theory (back propagatioin)
+1. Initialize the weights of the neural network
+2. Feed the input data through the network and calculate the output
+3. Calculate the error between the predicted output and the actual output
+4. Propagate the error backwards through the network and calculate the gradients of the weights
+5. Adjust the weights using the gradients and a learning rate (a hyperparameter that determines how much the weights should be adjusted)
+6. Repeat steps 2-5 for a certain number of epochs(iterations over the entire dataset)
+
+
 ## Usage
 You can create a neural network to recognize handwritten numbers with your own parameters
 ### Parameters
@@ -61,12 +70,3 @@ The output file of the neural network can be loaded into TestingWithDrawing and 
 ![test image 7](/screenshots/test7.png)
 ![test image 8](/screenshots/test8.png)
 ![test image 9](/screenshots/test9.png)
-
-## Training process theory (back propagatioin)
-1. Initialize the weights of the neural network
-2. Feed the input data through the network and calculate the output
-3. Calculate the error between the predicted output and the actual output
-4. Propagate the error backwards through the network and calculate the gradients of the weights
-5. Adjust the weights using the gradients and a learning rate (a hyperparameter that determines how much the weights should be adjusted)
-6. Repeat steps 2-5 for a certain number of epochs(iterations over the entire dataset)
-
