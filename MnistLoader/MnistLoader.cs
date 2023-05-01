@@ -1,16 +1,35 @@
 ﻿namespace MnistLoader
 {
-    internal class MnistLoader
+    public class MnistLoader
     {
-        public static (double[][], int[]) LoadTrainingData(string imagesFilePath, string labelsFilePath)
+        public static (double[][], int[]) LoadData(string imagesFilePath, string labelsFilePath)
         {
+            if (!File.Exists(imagesFilePath))
+            {
+                Console.WriteLine($"File {imagesFilePath} does not exists");
+                throw new FileNotFoundException();
+            }
+
+            if (!File.Exists(labelsFilePath))
+            {
+                Console.WriteLine($"File {labelsFilePath} does not exists");
+                throw new FileNotFoundException();
+            }
+
             byte[] images = File.ReadAllBytes(imagesFilePath);
             byte[] labels = File.ReadAllBytes(labelsFilePath);
 
             int magicNumber = ReadInt32(images, 0);
+
             int numberOfImages = ReadInt32(images, 4);
+            Console.WriteLine($"Number of images: {numberOfImages}");
+
             int numberOfRows = ReadInt32(images, 8);
+            Console.WriteLine($"Number of rows: {numberOfRows}");
+
             int numberOfCols = ReadInt32(images, 12);
+            Console.WriteLine($"Number of cols: {numberOfCols}");
+
             int headerSize = 16;
 
             int[] targets = new int[numberOfImages];
