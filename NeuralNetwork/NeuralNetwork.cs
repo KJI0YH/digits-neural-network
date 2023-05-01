@@ -1,5 +1,6 @@
 ﻿using ShellProgressBar;
 using System.Diagnostics;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace NeuralNetwork
 {
@@ -24,7 +25,7 @@ namespace NeuralNetwork
             return outputs;
         }
 
-        public void Train(double[][] inputs, int[] targets, double learningRate, int epochs)
+        public void Train(double[][] inputs, int[] targets, double learningRate, int epochs, string outputDirPath)
         {
             Stopwatch stopwatch = new Stopwatch();
             for (int epoch = 0; epoch < epochs; epoch++)
@@ -69,6 +70,16 @@ namespace NeuralNetwork
                 stopwatch.Stop();
                 progressBar.Dispose();
                 Console.WriteLine($"Total error = {totalError / inputs.Length * 100:F2}% | Training time: {stopwatch.Elapsed.Hours}h {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s ({stopwatch.Elapsed.TotalMilliseconds:F0}ms)");
+
+                // Saving neutal network
+                string filePath = outputDirPath + $"\\NeuralNetwork_epoch_{epoch + 1}.nn";
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(stream, this);
+                    Console.WriteLine($"File with neural network saved in: {filePath}");
+                }
+
                 stopwatch.Reset();
             }
         }

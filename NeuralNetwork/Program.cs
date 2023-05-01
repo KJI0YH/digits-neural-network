@@ -1,6 +1,5 @@
 ﻿using ShellProgressBar;
 using System.Diagnostics;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace NeuralNetwork
 {
@@ -11,7 +10,7 @@ namespace NeuralNetwork
             if (args.Length < 9)
             {
                 Console.WriteLine("Invalid arguments");
-                Console.WriteLine("Usage: [train images file path] [train labels file path] [test images file path] [test labels file path] [learning rate (0..1)] [epochs] [output file path] [layer sizes {2,}]");
+                Console.WriteLine("Usage: [train images file path] [train labels file path] [test images file path] [test labels file path] [learning rate (0..1)] [epochs] [output dir path] [layer sizes {2,}]");
                 return;
             }
 
@@ -32,15 +31,15 @@ namespace NeuralNetwork
                 Console.WriteLine($"Invalid epochs value: {args[5]}. It must be integer value");
             }
 
-            // Test file name
-            string outputFilePath = args[6];
+            // Test dir name
+            string outputDirPath = args[6];
             try
             {
-                File.Create(args[6]);
+                Directory.CreateDirectory(args[6]);
             }
             catch
             {
-                Console.WriteLine($"Can not create file: {args[6]}");
+                throw new Exception($"Can not create directory: {args[6]}");
             }
 
             // Get sizes of layers
@@ -50,8 +49,7 @@ namespace NeuralNetwork
             {
                 if (!int.TryParse(args[i], out sizes[i - 7]))
                 {
-                    Console.WriteLine($"Invalid layer size: {args[i]}");
-                    return;
+                    throw new Exception($"Invalid layer size: {args[i]}");
                 }
             }
 
@@ -75,17 +73,11 @@ namespace NeuralNetwork
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                nn.Train(trainImages, trainLabels, learningRate, epochs);
+
+                // Train neural network
+                nn.Train(trainImages, trainLabels, learningRate, epochs, outputDirPath);
                 stopwatch.Stop();
                 Console.WriteLine($"Training time: {stopwatch.Elapsed.Hours}h {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s ({stopwatch.Elapsed.TotalMilliseconds:F0}ms)");
-
-                // Saving neutal network
-                using (FileStream stream = new FileStream(outputFilePath, FileMode.Create))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(stream, nn);
-                    Console.WriteLine($"File with neural network saved in: {outputFilePath}");
-                }
 
                 // Testing neural network
                 var options = new ProgressBarOptions
