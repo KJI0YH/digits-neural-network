@@ -100,10 +100,12 @@ namespace NeuralNetwork
                     {
                         correct++;
                     }
+                    progressBar.Tick();
                 }
 
                 double accuracy = (double)correct / testImages.Length;
                 stopwatch.Stop();
+                progressBar.Dispose();
                 Console.WriteLine($"Accuracy: {accuracy * 100}%");
                 Console.WriteLine($"Testing time: {stopwatch.Elapsed.Hours}h {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s ({stopwatch.Elapsed.TotalMilliseconds:F0}ms)");
             }
